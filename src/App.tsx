@@ -1,41 +1,26 @@
-import React, { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import ListTasks from "./components/ListTasks";
-import CreateTask from "./components/CreateTask";
-import BulkDelete from "./components/BulkDelete";
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
 
-interface Task {
-  id: number;
-  name: string;
-}
-const App: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
-
-  const deleteTask = (selectedTasks: Task[]) => {
-    const updatedTasks = tasks.filter((task) => !selectedTasks.includes(task));
-    setTasks([...updatedTasks]);
-  };
-  const createTask = (task: Task) => {
-    setTasks([...tasks, task]);
-  };
+function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/create-task"
-          element={<CreateTask createTask={createTask} tasks={tasks} />}
-        />
-        <Route path="/list-tasks" element={<ListTasks tasks={tasks} />} />
-        <Route
-          path="/bulk-delete"
-          element={<BulkDelete deleteTask={deleteTask} tasks={tasks} />}
-        />
-        <Route path="/:any" element={<h1>The requested route not found</h1>} />
-      </Routes>
-    </BrowserRouter>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.tsx</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
   );
-};
+}
 
 export default App;
